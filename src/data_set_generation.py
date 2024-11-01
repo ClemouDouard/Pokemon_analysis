@@ -94,16 +94,26 @@ class Pokemon :
         self.set_types()
         self.set_weight()
 
-# base list of all pokemon
-pokemon_list = requests.get(f"{base_url}/pokemon?limit=100000&offset=0").json()
+if __name__ == "__main__" :
 
-pokeNameUrl_list = pokemon_list["results"]
-pokeName_list = [poke["name"] for poke in pokeNameUrl_list]
+    # base list of all pokemon
+    pokemon_list = requests.get(f"{base_url}/pokemon?limit=151&offset=0").json()
 
-data = []
+    pokeNameUrl_list = pokemon_list["results"]
+    pokeName_list = [poke["name"] for poke in pokeNameUrl_list]
 
-for pokemon_name in pokeName_list :
-    pokemon = Pokemon(pokemon_name)
-    pokemon.set_all()
+    # dataset creation
 
-    data.append(pokemon.get_dico())
+    data = []
+
+    for pokemon_name in pokeName_list :
+        pokemon = Pokemon(pokemon_name)
+        pokemon.set_all()
+
+        data.append(pokemon.get_dico())
+
+    df = pd.DataFrame(data)
+    df.set_index('id', inplace=True)
+
+    # csv file output
+    df.to_csv('data/pokemon_data_1stgen.csv', index=False)
