@@ -1,6 +1,5 @@
 import requests
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
 
 base_url = "https://pokeapi.co/api/v2/"
