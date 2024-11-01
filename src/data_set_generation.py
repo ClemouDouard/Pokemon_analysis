@@ -44,7 +44,7 @@ class Pokemon :
         return d
     
     def get_dico(self) -> dict:
-        return {'id' : self.id} | 
+        return {'id' : self.id} | {'name' : self.get_name()} | self.get_types() | {'height' : self.height} | {'weight' : self.weight} | self.get_stats()
 
     # the correct url used with the api
     def url(self) -> str:
@@ -95,14 +95,15 @@ class Pokemon :
         self.set_weight()
 
 # base list of all pokemon
-#pokemon_list = requests.get(f"{base_url}/pokemon?limit=100000&offset=0").json()
-#
-#pokeNameUrl_list = pokemon_list["results"]
-#pokeName_list = [poke["name"] for poke in pokeNameUrl_list]
-#
-#print(pokeName_list)
+pokemon_list = requests.get(f"{base_url}/pokemon?limit=100000&offset=0").json()
 
-pikachu = Pokemon("pikachu")
-pikachu.set_all()
+pokeNameUrl_list = pokemon_list["results"]
+pokeName_list = [poke["name"] for poke in pokeNameUrl_list]
 
-print(pikachu.get_types())
+data = []
+
+for pokemon_name in pokeName_list :
+    pokemon = Pokemon(pokemon_name)
+    pokemon.set_all()
+
+    data.append(pokemon.get_dico())
