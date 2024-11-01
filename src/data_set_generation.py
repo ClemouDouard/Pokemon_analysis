@@ -31,3 +31,8 @@ class Pokemon :
             return None
 
 pokemon_list = requests.get(f"{base_url}/pokemon?limit=100000&offset=0").json()
+
+pokeNameUrl_list = pokemon_list["results"]
+pokeName_list = [poke["name"] for poke in pokeNameUrl_list]
+
+print(pokeName_list)
