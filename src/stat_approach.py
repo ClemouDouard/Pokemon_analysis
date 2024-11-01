@@ -36,5 +36,5 @@ if __name__ == "__main__" :
     
     type_df = pd.DataFrame(stat)
     type_df.set_index('type', inplace=True)
-    
-    df.to_csv('data/type_data_1stgen.csv', index=False)
+
+    type_df.to_csv('data/type_data_1stgen.csv', index=False)
