@@ -33,6 +33,18 @@ class Pokemon :
             d[stat["stat"]["name"]] = stat["base_stat"]
         
         return d
+    
+    def get_types(self) -> dict:
+        d = {'type_1' : self.types[0]["type"]["name"]}
+        if len(self.types) == 2 :
+            d["type_2"] = self.types[1]["type"]["name"]
+        else :
+            d["type_2"] = "None"
+
+        return d
+    
+    def get_dico(self) -> dict:
+        return {'id' : self.id} | 
 
     # the correct url used with the api
     def url(self) -> str:
@@ -93,4 +105,4 @@ class Pokemon :
 pikachu = Pokemon("pikachu")
 pikachu.set_all()
 
-print(pikachu.get_stats())
+print(pikachu.get_types())
