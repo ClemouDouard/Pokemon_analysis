@@ -30,6 +30,7 @@ class Pokemon :
             print(f"Failed to retrieve data : {result.status_code}")
             return None
 
+# base list of all pokemon
 pokemon_list = requests.get(f"{base_url}/pokemon?limit=100000&offset=0").json()
 
 pokeNameUrl_list = pokemon_list["results"]
