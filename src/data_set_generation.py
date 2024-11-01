@@ -26,6 +26,13 @@ class Pokemon :
         signal, sr = librosa.load(audio_data, sr= None)
         mfccs = librosa.feature.mfcc(y=signal, sr=sr, n_mfcc=13)
         return np.mean(mfccs.T, axis=0)
+    
+    def get_stats(self) -> dict:
+        d = {}
+        for stat in self.stats :
+            d[stat["stat"]["name"]] = stat["base_stat"]
+        
+        return d
 
     # the correct url used with the api
     def url(self) -> str:
@@ -86,4 +93,4 @@ class Pokemon :
 pikachu = Pokemon("pikachu")
 pikachu.set_all()
 
-print(pikachu.get_mfcc())
+print(pikachu.get_stats())
