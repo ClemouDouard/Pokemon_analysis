@@ -4,6 +4,9 @@
 import requests
 import pandas as pd
 import seaborn as sns
+import librosa
+import numpy as np
+import io
 
 # start of the url to use the api
 base_url = "https://pokeapi.co/api/v2/"
@@ -15,6 +18,14 @@ class Pokemon :
 
     def get_name(self) -> str:
         return self.name
+    
+    def get_mfcc(self) -> list:
+        response = requests.get(self.cries["latest"])
+        audio_data = io.BytesIO(response.content)
+
+        signal, sr = librosa.load(audio_data, sr= None)
+        mfccs = librosa.feature.mfcc(y=signal, sr=sr, n_mfcc=13)
+        return np.mean(mfccs.T, axis=0)
 
     # the correct url used with the api
     def url(self) -> str:
@@ -30,7 +41,8 @@ class Pokemon :
         else :
             print(f"Failed to retrieve data : {result.status_code}")
             return None
-        
+
+    # setters  
     def set_cries(self) -> None :
         self.cries = self.info["cries"]
     
@@ -52,6 +64,7 @@ class Pokemon :
     def set_weight(self) -> None :
         self.weight = self.info["weight"]
 
+    # general setter
     def set_all(self) -> None :
         self.set_info()
         self.set_cries()
@@ -72,3 +85,5 @@ class Pokemon :
 
 pikachu = Pokemon("pikachu")
 pikachu.set_all()
+
+print(pikachu.get_mfcc())
