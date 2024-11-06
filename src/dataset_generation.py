@@ -13,7 +13,7 @@ base_url = "https://pokeapi.co/api/v2/"
 
 # pokemon class
 class Pokemon :
-    def __init__(self, name) -> None:
+    def __init__(self, name: str) -> None:
         self.name = name
 
     def get_name(self) -> str:
@@ -97,7 +97,7 @@ class Pokemon :
 if __name__ == "__main__" :
 
     # base list of all pokemon
-    pokemon_list = requests.get(f"{base_url}/pokemon?limit=151&offset=0").json()
+    pokemon_list = requests.get(f"{base_url}/pokemon?limit=100000&offset=0").json()
 
     pokeNameUrl_list = pokemon_list["results"]
     pokeName_list = [poke["name"] for poke in pokeNameUrl_list]
@@ -116,4 +116,4 @@ if __name__ == "__main__" :
     df.set_index('id', inplace=True)
 
     # csv file output
-    df.to_csv('data/pokemon_data_1stgen.csv', index=False)
+    df.to_csv('data/all/pokemon_data_all.csv', index=False)
