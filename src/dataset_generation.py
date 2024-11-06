@@ -97,7 +97,7 @@ class Pokemon :
 if __name__ == "__main__" :
 
     # base list of all pokemon
-    pokemon_list = requests.get(f"{base_url}/pokemon?limit=100000&offset=0").json()
+    pokemon_list = requests.get(f"{base_url}/pokemon?limit=1000000&offset=0").json()
 
     pokeNameUrl_list = pokemon_list["results"]
     pokeName_list = [poke["name"] for poke in pokeNameUrl_list]
