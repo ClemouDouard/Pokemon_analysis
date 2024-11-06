@@ -11,7 +11,7 @@ import io
 if __name__ == "__main__" :
 
     # extraction of the data set previously created
-    df = pd.read_csv('data/pokemon_data_1stgen.csv', index_col=0)
+    df = pd.read_csv('data/all/pokemon_data_all.csv', index_col=0)
     
     # stats for each type
 
@@ -38,4 +38,4 @@ if __name__ == "__main__" :
     #type_df.set_index('type', inplace=True)
     print(type_df.head())
 
-    type_df.to_csv('data/type_data_1stgen.csv', index=False)
+    type_df.to_csv('data/all/type_data_all.csv', index=False)
