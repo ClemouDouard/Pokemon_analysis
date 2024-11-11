@@ -3,7 +3,7 @@
   - [ ] Ajout des cris
   - [ ] Ajout des couleurs dominantes
 - [ ] Visualisation
-  - [ ] Stats numériques pour observer des potentielles tendances
+  - [x] Stats numériques pour observer des potentielles tendances
   - [ ] Régression linéaire
 - [ ] Corrélations
   - [ ] Matrice de corrélation
