@@ -40,5 +40,3 @@ I will only use the pokemon's data, which presents like so :
   - Using visual data (sprites)
   - Using sound (cries)
 - Regroup pokemons with their attributes using clustering algorithms
-
-## Dashboard to regroup each analysis idea
